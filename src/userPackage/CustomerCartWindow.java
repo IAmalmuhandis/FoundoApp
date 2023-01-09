@@ -53,12 +53,12 @@ public class CustomerCartWindow implements ActionListener {
     JFrame CartsFrame;
     JButton DashboardBtn;
     JButton BackBtn;
-    JButton RemoveCartBtn;
-    JButton OrderBtn;
-    String BlockType = "";
-    String BlockInch = "";
-    String DesiredLocation = "";
-    String RecieversPhoneNumber = "";
+   
+    JButton ClaimBtn;
+    String ItemName = "";
+    String ItemDescription = "";
+    String FoundLocation = "";
+    String FoundersPhoneNumber = "";
     String loggedInUsername;
     Statement statement;
    public CustomerCartWindow(String loggedInUser) throws SQLException{
@@ -83,7 +83,7 @@ public class CustomerCartWindow implements ActionListener {
          
           //   Creating total customers window Header Text
         JLabel headerText = new JLabel();
-        headerText.setText("My Cart");
+        headerText.setText("Find Your lost Item");
         headerText.setForeground(Color.white);
         headerText.setFont(new Font("algerian", Font.BOLD, 40));
         headerText.setVerticalAlignment(JLabel.CENTER);
@@ -111,21 +111,21 @@ public class CustomerCartWindow implements ActionListener {
 //    // execute the statement object
 //        Statement statement = (Statement) connect.initConnection();
         
-        String selectingAllCarts = "SELECT * FROM carts_table WHERE Customer_ID = '"+loggedInUsername+"'";
+        String selectingAllCarts = "SELECT * FROM carts_table";
         ResultSet resultSet = statement.executeQuery(selectingAllCarts);
         
     //    ResultSet rowCount = statement.executeQuery("SELECT COUNT(*) FROM carts_table");
   
          // creating my table data 
         databaseInitFunctions init = new databaseInitFunctions();
-        String columns[] = {"Block Type", "Block Inch", "Desired Location", "Recievers Phone Number"};
-        String data[][] = new String[init.countTableRows("carts_table", loggedInUsername)][columns.length];
+        String columns[] = {"Item Name", "Item Description", "Found Location", "Founders Phone Number"};
+        String data[][] = new String[init.countTableRows("carts_table", "")][columns.length];
         int i = 0;  
        while(resultSet.next() ){
-       data[i][0] = resultSet.getString("Block_Type");
-       data[i][1] = resultSet.getString("Block_Inch");
-       data[i][2] = resultSet.getString("Desired_Location");
-       data[i][3] = resultSet.getString("Recievers_PhoneNumber");
+       data[i][0] = resultSet.getString("item_name");
+       data[i][1] = resultSet.getString("item_description");
+       data[i][2] = resultSet.getString("found_Location");
+       data[i][3] = resultSet.getString("founder_PhoneNumber");
         i++;
        }    
          // creating list of all customers table
@@ -155,10 +155,10 @@ public class CustomerCartWindow implements ActionListener {
          JLabel cartDetailsLabel = new JLabel();
          cartDetailsLabel.setText(
                  "<html><body>"
-                         + "Block Type: "+ BlockType+"<br>"
-                         + "Block Inch: "+BlockInch+" Inch<br>"
-                         + "Desired Location: "+DesiredLocation+"<br>"
-                         + "Reciever Phone Number : "+RecieversPhoneNumber+" "+ "</body></html>");
+                         + "Item Name : "+ ItemName+"<br>"
+                         + "Item Description : "+ItemDescription+" Inch<br>"
+                         + "Found Location : "+FoundLocation+"<br>"
+                         + "Founder Phone Number : "+FoundersPhoneNumber+" "+ "</body></html>");
 
           CustomersTable.addMouseListener(new MouseAdapter(){
          public void mousePressed(MouseEvent e){
@@ -166,10 +166,10 @@ public class CustomerCartWindow implements ActionListener {
             int row = CustomersTable.rowAtPoint(e.getPoint());
             //System.out.println(row);
           //  String value = manageProductsTable.getModel().getValueAt(row, 0).toString();
-           BlockType = CustomersTable.getModel().getValueAt(row, 0).toString();
-           BlockInch =  CustomersTable.getModel().getValueAt(row, 1).toString();
-           DesiredLocation = CustomersTable.getModel().getValueAt(row, 2).toString();
-           RecieversPhoneNumber = CustomersTable.getModel().getValueAt(row, 3).toString();
+           ItemName = CustomersTable.getModel().getValueAt(row, 0).toString();
+           ItemDescription =  CustomersTable.getModel().getValueAt(row, 1).toString();
+           FoundLocation = CustomersTable.getModel().getValueAt(row, 2).toString();
+           FoundersPhoneNumber = CustomersTable.getModel().getValueAt(row, 3).toString();
 //          AvailableDateField.setText(availableDate);
 
 
@@ -178,11 +178,11 @@ public class CustomerCartWindow implements ActionListener {
          
            cartDetailsLabel.setText(
                  "<html><body>"
-                         + "Block Type: "+ BlockType+"<br>"
-                         + "Block Inch: "+BlockInch+" Inch<br>"
+                         + "Item Name : "+ ItemName+"<br>"
+                         + "Item Description : "+ItemDescription+" Inch<br>"
                      
-                         + "Desired Location: "+DesiredLocation+"<br>"
-                         + "Reciever Phone Number : "+RecieversPhoneNumber+" "+ "</body></html>");    
+                         + "Found Location : "+FoundLocation+"<br>"
+                         + "Founders Phone Number : "+FoundersPhoneNumber+" "+ "</body></html>");    
            
          }
          });
@@ -201,18 +201,15 @@ public class CustomerCartWindow implements ActionListener {
          lowerFormPanel.setLayout(null);
          
          // creating content for lower panel
-         OrderBtn = new JButton("Order");
-         OrderBtn.setBounds(30,10,100,30);
-         OrderBtn.addActionListener(this);
-         OrderBtn.setFocusable(false);
-         RemoveCartBtn = new JButton("Clear Cart");
-         RemoveCartBtn.setBounds(300,10,100,30);
-         RemoveCartBtn.addActionListener(this);
-         RemoveCartBtn.setFocusable(false);
+         ClaimBtn = new JButton("Claim Item");
+         ClaimBtn.setBounds(30,10,100,30);
+         ClaimBtn.addActionListener(this);
+         ClaimBtn.setFocusable(false);
+         
          
          // Adding content to lower form Panel 
-         lowerFormPanel.add(OrderBtn);
-         lowerFormPanel.add(RemoveCartBtn);
+         lowerFormPanel.add(ClaimBtn);
+        
          
          // adding upper and lower form part to form panel 
          formPanel.add(upperFormPanel, BorderLayout.CENTER);
@@ -259,7 +256,7 @@ public class CustomerCartWindow implements ActionListener {
     @Override 
     public void actionPerformed(ActionEvent e){
        
-       String deleteFromCartQuery = "DELETE FROM carts_table WHERE Customer_ID = '"+loggedInUsername+"'"; 
+      
         if(e.getSource() == DashboardBtn){
            try {
                CartsFrame.dispose();
@@ -275,135 +272,12 @@ public class CustomerCartWindow implements ActionListener {
             } catch (SQLException ex) {
                 Logger.getLogger(CustomerCartWindow.class.getName()).log(Level.SEVERE, null, ex);
             }
-            }else if(e.getSource() == OrderBtn){      
-            CartsFrame.dispose();
-            
-             
-            if(BlockType.equals("Normal One") && BlockInch.equals("9") ){
-                
-             try {
-               Desktop.getDesktop().browse(new URL("https://paystack.com/buy/cement-block-normal1inch9").toURI());
-               int res =  JOptionPane.showConfirmDialog(CartsFrame, "Do you want want to make another purchase?" , "Notice!", JOptionPane.YES_NO_OPTION);
-               if(res == 1){
-                CartsFrame.dispose();
-                   try {
-                       new UserDashboardWindow(loggedInUsername);
-                   } catch (SQLException ex) {
-                       Logger.getLogger(CustomerCartWindow.class.getName()).log(Level.SEVERE, null, ex);
-                   }
-               }else{
-                CartsFrame.dispose();
-                   try {
-                       new CustomerCartWindow(loggedInUsername);
-                   } catch (SQLException ex) {
-                       Logger.getLogger(CustomerCartWindow.class.getName()).log(Level.SEVERE, null, ex);
-                   }
-               
-               }
-               
-             } catch (IOException | URISyntaxException ex) {
-                        ex.printStackTrace();
-                           }
-            }else if(BlockType.equals("Normal One") && BlockInch.equals("6") ){
-             try {
-               Desktop.getDesktop().browse(new URL("https://paystack.com/buy/cement-block-normal1inch6").toURI());
-              int res =  JOptionPane.showConfirmDialog(CartsFrame, "Do you want want to make another purchase?" , "Notice!", JOptionPane.YES_NO_OPTION);
-               if(res == 1){
-                CartsFrame.dispose();
-                   try {
-                       new UserDashboardWindow(loggedInUsername);
-                   } catch (SQLException ex) {
-                       Logger.getLogger(CustomerCartWindow.class.getName()).log(Level.SEVERE, null, ex);
-                   }
-               }else{
-                CartsFrame.dispose();
-                   try {
-                       new CustomerCartWindow(loggedInUsername);
-                   } catch (SQLException ex) {
-                       Logger.getLogger(CustomerCartWindow.class.getName()).log(Level.SEVERE, null, ex);
-                   }
-               
-               }  
-             
-             } catch (IOException | URISyntaxException ex) {
-                        ex.printStackTrace();
-                           }
-            
-            }else if(BlockType.equals("Normal Two") && BlockInch.equals("9") ){
-             try {
-               Desktop.getDesktop().browse(new URL("https://paystack.com/buy/cement-block-normal2inch9").toURI());
-              int res =  JOptionPane.showConfirmDialog(CartsFrame, "Do you want want to make another purchase?" , "Notice!", JOptionPane.YES_NO_OPTION);
-               if(res == 1){
-                CartsFrame.dispose();
-                   try {
-                       new UserDashboardWindow(loggedInUsername);
-                   } catch (SQLException ex) {
-                       Logger.getLogger(CustomerCartWindow.class.getName()).log(Level.SEVERE, null, ex);
-                   }
-               }else{
-                CartsFrame.dispose();
-                   try {
-                       new CustomerCartWindow(loggedInUsername);
-                   } catch (SQLException ex) {
-                       Logger.getLogger(CustomerCartWindow.class.getName()).log(Level.SEVERE, null, ex);
-                   }
-               
-               }    
-             
-             } catch (IOException | URISyntaxException ex) {
-                        ex.printStackTrace();
-                           }
-            
-            }else if(BlockType.equals("Normal Two") && BlockInch.equals("6") ){
-             try {
-               Desktop.getDesktop().browse(new URL("https://paystack.com/buy/cement-block-normal2inch6").toURI());
-              int res =  JOptionPane.showConfirmDialog(CartsFrame, "Do you want want to make another purchase?" , "Notice!", JOptionPane.YES_NO_OPTION);
-               if(res == 1){
-                CartsFrame.dispose();
-                   try {
-                       new UserDashboardWindow(loggedInUsername);
-                   } catch (SQLException ex) {
-                       Logger.getLogger(CustomerCartWindow.class.getName()).log(Level.SEVERE, null, ex);
-                   }
-               }else{
-                CartsFrame.dispose();
-                   try {
-                       new CustomerCartWindow(loggedInUsername);
-                   } catch (SQLException ex) {
-                       Logger.getLogger(CustomerCartWindow.class.getName()).log(Level.SEVERE, null, ex);
-                   }
-               
-               }   
-             
-             } catch (IOException | URISyntaxException ex) {
-                        ex.printStackTrace();
-                           }
-            
-            } else{
-                System.out.println("fails");
-                
+            }else if(e.getSource() == ClaimBtn){      
+        
+            JOptionPane.showMessageDialog(null, "Please call this number : " + FoundersPhoneNumber + " to recieve your item" , "Founder Contact", JOptionPane.INFORMATION_MESSAGE, null); 
             }
-            
-//            try {
-//                new PaymentWindow(loggedInUsername,BlockType, BlockInch,BlockAmount, TotalPrice, DesiredLocation, RecieversPhoneNumber);
-//            } catch (SQLException ex) {
-//                Logger.getLogger(CustomerCartWindow.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-        }else if(e.getSource() == RemoveCartBtn){
-           try {
-                  int response =  JOptionPane.showConfirmDialog(CartsFrame, "Are You sure you want to clear cart items?","Warning!", JOptionPane.YES_NO_OPTION);
-              if(response == 0){
-                JOptionPane.showMessageDialog(CartsFrame, "Carts Items cleared!", "Info.", JOptionPane.INFORMATION_MESSAGE, null);     
-                 statement.executeUpdate(deleteFromCartQuery);
-                 CartsFrame.dispose();
-                 new  CustomerCartWindow(loggedInUsername);
-              }
-              
-           } catch (SQLException ex) {
-               Logger.getLogger(CustomerCartWindow.class.getName()).log(Level.SEVERE, null, ex);
-           }
-           
-        }    
+          
+
     }
 }
 

@@ -133,7 +133,7 @@ public class availableProductsWindow implements ActionListener {
     ItemNameLabel.setBounds(150,50,200,50);
     itemNameField = new JTextField();
     itemNameField.setPreferredSize(new Dimension(200,30));
-    itemNameField.setBounds(300,50,200,30);
+    itemNameField.setBounds(300,60,200,30);
     // Item Description
     // recievers phone number
     JLabel ItemDescriptionLabel = new JLabel("Item Description : ");
@@ -142,25 +142,25 @@ public class availableProductsWindow implements ActionListener {
     ItemDescriptionLabel.setBounds(150,100,200,50);
     itemDescriptionField = new JTextArea();
     itemDescriptionField.setPreferredSize(new Dimension(200,70));
-    itemDescriptionField.setBounds(300,100,200,80);
+    itemDescriptionField.setBounds(300,110,200,80);
     
        // recievers phone number
-    JLabel foundersLabel = new JLabel("Founder's Contact");
+    JLabel foundersLabel = new JLabel("Founder's Contact : ");
     foundersLabel.setFont(new Font("aerial", Font.BOLD,15));
     foundersLabel.setForeground(Color.white);
     foundersLabel.setBounds(150,200,200,50);
     receiversPhoneNumberField = new JTextField();
     receiversPhoneNumberField.setPreferredSize(new Dimension(200,30));
-    receiversPhoneNumberField.setBounds(300,200,200,30);
+    receiversPhoneNumberField.setBounds(300,210,200,30);
     
     // Delivery location 
-    JLabel FoundLocationLabel = new JLabel("Found at");
+    JLabel FoundLocationLabel = new JLabel("Was Found at : ");
     FoundLocationLabel.setFont(new Font("aerial", Font.BOLD,15));
     FoundLocationLabel.setForeground(Color.white);
-    FoundLocationLabel.setBounds(10,0,0,0);
+    FoundLocationLabel.setBounds(150,250,200,50);
     FoundLocationField = new JTextField();
     FoundLocationField.setPreferredSize(new Dimension(250,30));
-    FoundLocationField.setBounds(10,0,0,0);
+    FoundLocationField.setBounds(300,260,200,30);
     
     
     
@@ -215,7 +215,7 @@ public class availableProductsWindow implements ActionListener {
          
         
          // creating footer panel content
-         viewCartBtn = new JButton("<html><body><span style='color: rgb(92, 64, 51) '>View Carts </span><span style='color: red;'> ("+init.countTableRows("carts_table", loggedInUsername)+")<span></body></html>");
+         viewCartBtn = new JButton("<html><body><span style='color: rgb(92, 64, 51) '>View Items </span><span style='color: red;'> ("+init.countTableRows("carts_table", "")+")<span></body></html>");
          viewCartBtn.setFocusable(false);
          viewCartBtn.addActionListener(this);
          viewCartBtn.setBounds(85,30,170,40);
@@ -260,17 +260,19 @@ public class availableProductsWindow implements ActionListener {
         // initialising the card details
         FoundersPhoneNo =receiversPhoneNumberField.getText();
         FounderLocation = FoundLocationField.getText();
+        ItemName = itemNameField.getText();
+        ItemDescription = itemDescriptionField.getText();
        
         
             // Try and catch
-            if (receiversPhoneNumberField.getText().isEmpty() || FoundLocationField.getText().isEmpty()) {
+            if (receiversPhoneNumberField.getText().isEmpty() || FoundLocationField.getText().isEmpty() || itemNameField.getText().isEmpty() || itemDescriptionField.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Input Field cannot be empty", "Error", JOptionPane.ERROR_MESSAGE, null);
             }else {
             try {
      
-              statement.executeUpdate("insert into carts_table (Customer_ID,found_location, Founder_PhoneNumber) "
+              statement.executeUpdate("insert into carts_table (Customer_ID,found_location, Founder_PhoneNumber, item_name, item_description) "
                 + "values('"+loggedInUsername+"', "
-                + "'"+FounderLocation+"','"+FoundersPhoneNo+"')");
+                + "'"+FounderLocation+"','"+FoundersPhoneNo+"', '"+ ItemName +"', '"+ ItemDescription +"')");
                
                 // execute the statement object
             } catch (SQLException ex) {
@@ -279,7 +281,9 @@ public class availableProductsWindow implements ActionListener {
                 // resetting input fields
                receiversPhoneNumberField.setText("");
                 FoundLocationField.setText("");
-               
+                itemNameField.setText("");
+                itemDescriptionField.setText("");
+                
                 JOptionPane.showMessageDialog(null, "New Cart was Added!", "Added Successfully", JOptionPane.INFORMATION_MESSAGE, null);
                     AvailableProductsFrame.dispose();
              try {
