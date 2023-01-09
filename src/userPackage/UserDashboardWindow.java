@@ -37,8 +37,8 @@ public class UserDashboardWindow implements ActionListener {
     JFrame CustomerFrame;
     JButton logoutBtn;
     JPanel products;
-    JButton viewProductsBtn;
-    JButton viewCartsBtn;
+    JButton addLostItemBtn;
+    JButton viewFoundItemsBtn;
     JButton profilePanelBtn;
     JPanel Cart;
     JPanel Profile;
@@ -68,31 +68,31 @@ public class UserDashboardWindow implements ActionListener {
      CustomerFrame.setLayout(new BorderLayout());
      CustomerFrame.setResizable(false);
      CustomerFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-     ImageIcon icon = new ImageIcon("C:\\\\Users\\\\ZAHRA AHMED GARBA\\\\Documents\\\\GitHub\\\\DsBlockSoftware\\\\src\\\\img\\\\logo.png");
+     ImageIcon icon = new ImageIcon("C:\\\\\\\\Users\\\\\\\\The Only Supplier\\\\\\\\eclipse-workspace\\\\\\\\FoundAndLostSystem\\\\\\\\src\\\\\\\\img\\\\logo.png");
      CustomerFrame.setIconImage(icon.getImage());
     
      // Creating Side Bar
     JPanel SideBar = new JPanel();
-    SideBar.setBackground(new Color(3,37,126));
+    SideBar.setBackground(new Color(92, 64, 51));
     SideBar.setPreferredSize(new Dimension(300,0));
     SideBar.setLayout(null);
     
     // Creating Body Panel
     JPanel DashboardBody = new JPanel();
-    DashboardBody.setBackground(new Color(115,215,255));
+    DashboardBody.setBackground(new Color(253,226,149));
     DashboardBody.setPreferredSize(new Dimension(300,0));
     DashboardBody.setLayout(null);
     
     // creating profile pic
    // Border border = BorderFactory.createLineBorder(new Color(115,215,255),8);
         JLabel ProfilePicLabel = new JLabel();
-        ImageIcon HeaderImage = new ImageIcon(new ImageIcon("C:\\\\Users\\\\ZAHRA AHMED GARBA\\\\Documents\\\\GitHub\\\\DsBlockSoftware\\\\src\\\\img\\\\" + profile_picture).getImage().getScaledInstance(180, 180, Image.SCALE_DEFAULT));
+        ImageIcon HeaderImage = new ImageIcon(new ImageIcon("C:\\\\Users\\\\The Only Supplier\\\\eclipse-workspace\\\\FoundAndLostSystem\\\\src\\\\img\\\\" + profile_picture).getImage().getScaledInstance(180, 180, Image.SCALE_DEFAULT));
         ProfilePicLabel.setBounds(50,50,200,300); 
         ProfilePicLabel.setForeground(new Color(3,37,126));
         ProfilePicLabel.setVerticalTextPosition(JLabel.BOTTOM);
         ProfilePicLabel.setHorizontalTextPosition(JLabel.CENTER);
         ProfilePicLabel.setIcon(HeaderImage);
-        ProfilePicLabel.setText(current_firstName + current_lastName);
+//        ProfilePicLabel.setText(current_firstName + current_lastName);
         
      
     
@@ -100,7 +100,7 @@ public class UserDashboardWindow implements ActionListener {
      JLabel headerText = new JLabel();
         headerText.setText("<html><body><h1 style='text-align: center'>Welcome Back <br> " + current_firstName + "!</h1></body></html>");
         
-        headerText.setForeground(new Color(115,215,255));
+        headerText.setForeground(new Color(253,226,149));
         headerText.setBounds(35,300,200,100);
         headerText.setFont(new Font("algerian", Font.BOLD, 20));
         headerText.setVerticalAlignment(JLabel.CENTER);
@@ -109,55 +109,55 @@ public class UserDashboardWindow implements ActionListener {
          // Creating Dashboard Content
     // Products panel
     JPanel productsPanel = new JPanel();
-    productsPanel.setBackground(new Color(3,37,126));
+    productsPanel.setBackground(new Color(92, 64, 51));
     productsPanel.setBounds(20,100,250,150);
     productsPanel.setLayout(new BorderLayout());
     
     // Creating products panel content
      // Header image
      JLabel ProductsIconLabel = new JLabel();
-        ImageIcon ProductsIcon = new ImageIcon(new ImageIcon("C:\\\\Users\\\\ZAHRA AHMED GARBA\\\\Documents\\\\GitHub\\\\DsBlockSoftware\\\\src\\\\img\\\\ProductsIconPic.png").getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT)); 
+        ImageIcon ProductsIcon = new ImageIcon(new ImageIcon("C:\\\\Users\\\\The Only Supplier\\\\eclipse-workspace\\\\FoundAndLostSystem\\\\src\\\\img\\\\add2.png").getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT)); 
         ProductsIconLabel.setIcon(ProductsIcon);
         ProductsIconLabel.setVerticalAlignment(JLabel.CENTER);
         ProductsIconLabel.setHorizontalAlignment(JLabel.CENTER);
     
     // creating view products button
-    viewProductsBtn = new JButton("View Products");
-    viewProductsBtn.setFocusable(false);
-    viewProductsBtn.setForeground(new Color(3,37,126));
-    viewProductsBtn.addActionListener(this);
+    addLostItemBtn = new JButton("Add a Lost Item");
+    addLostItemBtn.setFocusable(false);
+    addLostItemBtn.setForeground(new Color(92, 64, 51));
+    addLostItemBtn.addActionListener(this);
         
         // adding elements to total products panel 
         productsPanel.add(ProductsIconLabel, BorderLayout.CENTER);
-        productsPanel.add(viewProductsBtn, BorderLayout.SOUTH);
+        productsPanel.add(addLostItemBtn, BorderLayout.SOUTH);
         
     // Carts panel
     JPanel cartsPanel = new JPanel();
-    cartsPanel.setBackground(new Color(3,37,126));
+    cartsPanel.setBackground(new Color(92, 64, 51));
     cartsPanel.setBounds(310, 100,250, 150);
     cartsPanel.setLayout(new BorderLayout());
     
     // creating cart image
      // Header image
      JLabel cartIconLabel = new JLabel();
-        ImageIcon CartIcon = new ImageIcon(new ImageIcon("C:\\\\Users\\\\ZAHRA AHMED GARBA\\\\Documents\\\\GitHub\\\\DsBlockSoftware\\\\src\\\\img\\\\ShoppingCartIcon.png").getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT)); 
+        ImageIcon CartIcon = new ImageIcon(new ImageIcon("C:\\\\Users\\\\The Only Supplier\\\\eclipse-workspace\\\\FoundAndLostSystem\\\\src\\\\img\\\\zoom_icon2.png").getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT)); 
         cartIconLabel.setIcon(CartIcon);
         cartIconLabel.setVerticalAlignment(JLabel.CENTER);
         cartIconLabel.setHorizontalAlignment(JLabel.CENTER);
     
     // creating view carts button
-    viewCartsBtn = new JButton("View Carts");
-    viewCartsBtn.setFocusable(false);
-    viewCartsBtn.setForeground(new Color(3,37,126));
-    viewCartsBtn.addActionListener(this);
+    viewFoundItemsBtn = new JButton("View Found Items");
+    viewFoundItemsBtn.setFocusable(false);
+    viewFoundItemsBtn.setForeground(new Color(92, 64, 51));
+    viewFoundItemsBtn.addActionListener(this);
     
       // adding elements to carts panel 
         cartsPanel.add(cartIconLabel, BorderLayout.CENTER);
-        cartsPanel.add( viewCartsBtn, BorderLayout.SOUTH);
+        cartsPanel.add( viewFoundItemsBtn, BorderLayout.SOUTH);
     
     // Profile Panel
      JPanel profilePanel = new JPanel();
-    profilePanel.setBackground(new Color(3,37,126));
+    profilePanel.setBackground(new Color(92, 64, 51));
     profilePanel.setBounds(610,100,250,150);
     profilePanel.setLayout(new BorderLayout());
     
@@ -166,7 +166,7 @@ public class UserDashboardWindow implements ActionListener {
      // Creating profile panel content
      // Header image
      JLabel ProfileIconLabel = new JLabel();
-        ImageIcon ProfileIcon = new ImageIcon(new ImageIcon("C:\\\\\\\\Users\\\\\\\\ZAHRA AHMED GARBA\\\\\\\\Documents\\\\\\\\GitHub\\\\\\\\DsBlockSoftware\\\\\\\\src\\\\\\\\img\\\\\\\\ProfileIcon.png").getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT)); 
+        ImageIcon ProfileIcon = new ImageIcon(new ImageIcon("C:\\\\Users\\\\The Only Supplier\\\\eclipse-workspace\\\\FoundAndLostSystem\\\\src\\\\img\\\\\\\\ProfileIcon.png").getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT)); 
         ProfileIconLabel.setIcon(ProfileIcon);
         ProfileIconLabel.setVerticalAlignment(JLabel.CENTER);
         ProfileIconLabel.setHorizontalAlignment(JLabel.CENTER);
@@ -174,7 +174,7 @@ public class UserDashboardWindow implements ActionListener {
     // creating manage produts button
     profilePanelBtn = new JButton("Edit Profile");
     profilePanelBtn.setFocusable(false);
-    profilePanelBtn.setForeground(new Color(3,37,126));
+    profilePanelBtn.setForeground(new Color(92, 64, 51));
     profilePanelBtn.addActionListener(this);
     
       // adding elements to manage products panel 
@@ -186,7 +186,7 @@ public class UserDashboardWindow implements ActionListener {
     logoutBtn.setPreferredSize(new Dimension(0,50));
     logoutBtn.setFocusable(false);
     logoutBtn.setBounds(0,582,300,40);
-    logoutBtn.setForeground(new Color(3,37,126));
+    logoutBtn.setForeground(new Color(92, 64, 51));
     logoutBtn.addActionListener(this);
         
       // Adding elements to Side bar
@@ -214,14 +214,14 @@ public class UserDashboardWindow implements ActionListener {
     if(e.getSource() == logoutBtn){
             CustomerFrame.dispose();
             new HomeWindow();
-    }else if(e.getSource() ==  viewCartsBtn){
+    }else if(e.getSource() ==  viewFoundItemsBtn){
         try {
             CustomerFrame.dispose();
             new CustomerCartWindow(this.loggedInUsername);
         } catch (SQLException ex) {
             Logger.getLogger(UserDashboardWindow.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }else if(e.getSource() == viewProductsBtn){
+    }else if(e.getSource() == addLostItemBtn){
         try {
             CustomerFrame.dispose();
             new availableProductsWindow(this.loggedInUsername);

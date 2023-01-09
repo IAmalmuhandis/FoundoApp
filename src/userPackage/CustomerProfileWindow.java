@@ -72,27 +72,27 @@ public class CustomerProfileWindow implements ActionListener {
      CustomerProfileFrame = new JFrame("My Profile");
      CustomerProfileFrame.setBounds(dim.width/15, dim.height/14,1200, 660);  
      CustomerProfileFrame.setResizable(false);
-     CustomerProfileFrame.getContentPane().setBackground(new Color(115,215,255));
+     CustomerProfileFrame.getContentPane().setBackground(new Color(253,226,149));
      CustomerProfileFrame.setLayout(new BorderLayout());
      CustomerProfileFrame.setResizable(false);
      CustomerProfileFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     
      // Creating Side Bar
     JPanel SideBar = new JPanel();
-    SideBar.setBackground(new Color(3,37,126));
+    SideBar.setBackground(new Color(92, 64, 51));
     SideBar.setPreferredSize(new Dimension(300,0));
     SideBar.setLayout(new BorderLayout());
     
     // Creating Body Panel
      JPanel EditProfileBody = new JPanel();
-    EditProfileBody.setBackground(new Color(115,215,255));
+    EditProfileBody.setBackground(new Color(253,226,149));
     EditProfileBody.setPreferredSize(new Dimension(300,0));
     EditProfileBody.setLayout(new BorderLayout());
     
     // Creating Side bar Text
      JLabel headerText = new JLabel();
      headerText.setText(current_firstName + " " + current_lastName);
-     headerText.setForeground(new Color(115,215,255));
+     headerText.setForeground(new Color(253,226,149));
      headerText.setFont(new Font("algerian", Font.BOLD, 20));
      headerText.setVerticalAlignment(JLabel.CENTER);
      headerText.setHorizontalAlignment(JLabel.CENTER);
@@ -100,31 +100,31 @@ public class CustomerProfileWindow implements ActionListener {
         // creating dashboard body five panels 
         // top panel
      JPanel mainBodyTop = new JPanel();
-     mainBodyTop.setBackground(new Color(115,215,255));
+     mainBodyTop.setBackground(new Color(253,226,149));
      mainBodyTop.setPreferredSize(new Dimension(0,40));
    
     
         // left panel
     JPanel mainBodyLeft = new JPanel();
-    mainBodyLeft.setBackground(new Color(115,215,255));
+    mainBodyLeft.setBackground(new Color(253,226,149));
     mainBodyLeft.setPreferredSize(new Dimension(70,0));
  
     
       // right panel
     JPanel mainBodyRight = new JPanel();
-    mainBodyRight.setBackground(new Color(115,215,255));
+    mainBodyRight.setBackground(new Color(253,226,149));
     mainBodyRight.setPreferredSize(new Dimension(70,0));
    
     
      //bottom panel
     JPanel mainBodyBottom = new JPanel();
-    mainBodyBottom.setBackground(new Color(115,215,255));
+    mainBodyBottom.setBackground(new Color(253,226,149));
     mainBodyBottom.setPreferredSize(new Dimension(0,40));
     
     
     //center panel
     JPanel mainBodyCenter = new JPanel();
-    mainBodyCenter.setBackground(new Color(3,37,126));
+    mainBodyCenter.setBackground(new Color(92, 64, 51));
     mainBodyCenter.setLayout(new BorderLayout());
     
     
@@ -132,16 +132,16 @@ public class CustomerProfileWindow implements ActionListener {
     JPanel topProfileBody = new JPanel();
     topProfileBody.setPreferredSize(new Dimension(0,170));
     topProfileBody.setLayout(null);
-    topProfileBody.setBackground(new Color(3,37,126));
+    topProfileBody.setBackground(new Color(92, 64, 51));
     
     //creating top profile body content
         
-        icon =    new ImageIcon(new ImageIcon("C:\\\\Users\\\\ZAHRA AHMED GARBA\\\\Documents\\\\GitHub\\\\DsBlockSoftware\\\\src\\\\img\\\\" + profile_picture).getImage().getScaledInstance(150, 150, Image.SCALE_DEFAULT));
+        icon =    new ImageIcon(new ImageIcon("C:\\\\Users\\\\The Only Supplier\\\\eclipse-workspace\\\\FoundAndLostSystem\\\\src\\\\img\\\\" + profile_picture).getImage().getScaledInstance(150, 150, Image.SCALE_DEFAULT));
     
         JLabel formHeaderText = new JLabel();
     formHeaderText.setText("Edit Your Profile ");
     formHeaderText.setBounds(350,15,400,100);
-    formHeaderText.setForeground(new Color(115,215,255));
+    formHeaderText.setForeground(new Color(253,226,149));
     formHeaderText.setFont(new Font("algerian", Font.PLAIN, 30));
     JLabel formHeaderPic = new JLabel();
     formHeaderPic.setIcon(icon);
@@ -158,32 +158,32 @@ public class CustomerProfileWindow implements ActionListener {
     // form body sub Panels 
     JPanel topForm = new JPanel();
     topForm.setPreferredSize(new Dimension(0,50));
-    topForm.setBackground(new Color(3,37,126));
+    topForm.setBackground(new Color(92, 64, 51));
     
     JPanel leftForm = new JPanel();
     leftForm.setPreferredSize(new Dimension(50,0));
-    leftForm.setBackground(new Color(3,37,126));
+    leftForm.setBackground(new Color(92, 64, 51));
     
     JPanel rightForm = new JPanel();
     rightForm.setPreferredSize(new Dimension(50,0));
-    rightForm.setBackground(new Color(3,37,126));
+    rightForm.setBackground(new Color(92, 64, 51));
     
     JPanel bottomForm = new JPanel();
     bottomForm.setPreferredSize(new Dimension(0,30));
-    bottomForm.setBackground(new Color(3,37,126));
+    bottomForm.setBackground(new Color(92, 64, 51));
     
     JPanel centerForm = new JPanel();
-    centerForm.setBackground(new Color(115,215,255));
+    centerForm.setBackground(new Color(253,226,149));
     centerForm.setLayout(null);
     
     // creating fields for center form
 //    JLabel uploadPictureLabel = new JLabel("Upload Profile Picture:");
-//    uploadPictureLabel.setForeground(new Color(3,37,126));
+//    uploadPictureLabel.setForeground(new Color(92, 64, 51));
 //    uploadPictureLabel.setBounds(20,30, 200,40);
 //    
     // creating upload button
     ChoosePicFileBtn = new JButton("Upload");
-    ChoosePicFileBtn.setForeground(new Color(3,37,126));
+    ChoosePicFileBtn.setForeground(new Color(92, 64, 51));
     ChoosePicFileBtn.setBounds(150,30,100,30);
     ChoosePicFileBtn.setFocusable(false);
     ChoosePicFileBtn.addActionListener(this);
@@ -191,26 +191,26 @@ public class CustomerProfileWindow implements ActionListener {
     // creating name fields 
     JLabel firstNameLabel = new JLabel("First Name:");
     firstNameLabel.setBounds(20,90,200,40);
-    firstNameLabel.setForeground(new Color(3,37,126));
+    firstNameLabel.setForeground(new Color(92, 64, 51));
     firstName = new JTextField(current_firstName);
     firstName.setBounds(120,90,200,30);
     
     JLabel lastNameLabel = new JLabel("Last Name:");
-    lastNameLabel.setForeground(new Color(3,37,126));
+    lastNameLabel.setForeground(new Color(92, 64, 51));
     lastNameLabel.setBounds(330,90,200,40);
     lastName = new JTextField(current_lastName);
     lastName.setBounds(430,90,200,30);
      
      //************
     JLabel emailAddressLabel = new JLabel("Email:");
-    emailAddressLabel.setForeground(new Color(3,37,126));
+    emailAddressLabel.setForeground(new Color(92, 64, 51));
     emailAddressLabel.setBounds(20,150,200,40);
     emailAddress = new JTextField(current_emailAddress);
     emailAddress.setBounds(100,150,200,30);
     emailAddress.setFocusable(false);
     
     JLabel phoneNumberLabel = new JLabel("Phone Number:");
-    phoneNumberLabel.setForeground(new Color(3,37,126));
+    phoneNumberLabel.setForeground(new Color(92, 64, 51));
     phoneNumberLabel.setBounds(310,150,200,40);
     phoneNumber = new JTextField(current_phoneNumber);
     phoneNumber.setBounds(430,150,200,30);
@@ -218,7 +218,7 @@ public class CustomerProfileWindow implements ActionListener {
      // creating edit button
      EditProfileBtn = new JButton("Update Profile");
      EditProfileBtn.setBounds(240,220,200,40);
-     EditProfileBtn.setForeground(new Color(3,37,126));
+     EditProfileBtn.setForeground(new Color(92, 64, 51));
      EditProfileBtn.setFocusable(false);
      EditProfileBtn.addActionListener(this);
     
@@ -259,7 +259,7 @@ public class CustomerProfileWindow implements ActionListener {
     backToDashboardBtn = new JButton("Dashboard");
     backToDashboardBtn.setPreferredSize(new Dimension(0,40));
     backToDashboardBtn.setFocusable(false);
-    backToDashboardBtn.setForeground(new Color(3,37,126));
+    backToDashboardBtn.setForeground(new Color(92, 64, 51));
     backToDashboardBtn.addActionListener(this);
         
       // Adding elements to Side bar

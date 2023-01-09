@@ -68,7 +68,7 @@ public class CustomerCartWindow implements ActionListener {
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         CartsFrame.setBounds(dim.width/7, dim.height/20,900, 600);
         CartsFrame.setLayout(new BorderLayout());
-        CartsFrame.getContentPane().setBackground(new Color(115,215,255));
+        CartsFrame.getContentPane().setBackground(new Color(253,226,149));
         CartsFrame.setResizable(false);
         CartsFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         ImageIcon icon = new ImageIcon("C:\\\\Users\\\\ZAHRA AHMED GARBA\\\\Documents\\\\GitHub\\\\DsBlockSoftware\\\\src\\\\img\\\\logo.png");
@@ -77,7 +77,7 @@ public class CustomerCartWindow implements ActionListener {
         // Creating Header Panel
           // total customers  Header
          JPanel HeaderPanel = new JPanel();
-         HeaderPanel.setBackground(new Color(3,37,126));
+         HeaderPanel.setBackground(new Color(92, 64, 51));
          HeaderPanel.setPreferredSize(new Dimension(100,90));
          HeaderPanel.setLayout(new FlowLayout());
          
@@ -94,7 +94,7 @@ public class CustomerCartWindow implements ActionListener {
         
         // Creating Body Panel
          JPanel tablePanel = new JPanel();
-         tablePanel.setBackground(new Color(115,215,255));
+         tablePanel.setBackground(new Color(253,226,149));
          tablePanel.setPreferredSize(new Dimension(100,90));
          tablePanel.setLayout(new BorderLayout());
          
@@ -138,17 +138,17 @@ public class CustomerCartWindow implements ActionListener {
          // creating table remove and add row form 
          JPanel addOrRemovePanel = new JPanel();
          addOrRemovePanel.setPreferredSize(new Dimension(0,200));
-         addOrRemovePanel.setBackground(new Color(115,215,255));
+         addOrRemovePanel.setBackground(new Color(253,226,149));
          
          // creating form
          JPanel formPanel = new JPanel();
          formPanel.setPreferredSize(new Dimension(440,190));
-         formPanel.setBackground(new Color(3,37,126));
+         formPanel.setBackground(new Color(92, 64, 51));
          formPanel.setLayout(new BorderLayout());
          
          // creating upper and lower form part panel
          JPanel upperFormPanel = new JPanel();
-         upperFormPanel.setBackground(new Color(3,37,126));
+         upperFormPanel.setBackground(new Color(92, 64, 51));
          upperFormPanel.setLayout(new FlowLayout());
          
          // creating content for upper panel 
@@ -197,7 +197,7 @@ public class CustomerCartWindow implements ActionListener {
          
          JPanel lowerFormPanel = new JPanel();
          lowerFormPanel.setPreferredSize(new Dimension(0,50));
-         lowerFormPanel.setBackground(new Color(3,37,126));
+         lowerFormPanel.setBackground(new Color(92, 64, 51));
          lowerFormPanel.setLayout(null);
          
          // creating content for lower panel
@@ -227,7 +227,7 @@ public class CustomerCartWindow implements ActionListener {
         
         // creating footer panel 
          JPanel footerPanel = new JPanel();
-         footerPanel.setBackground(new Color(3,37,126));
+         footerPanel.setBackground(new Color(92, 64, 51));
          footerPanel.setPreferredSize(new Dimension(100,90));
          footerPanel.setLayout(null);
          

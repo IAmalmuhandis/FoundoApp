@@ -71,26 +71,26 @@ public class HomeWindow implements ActionListener{
    
     // Creating Header Panel
     JPanel HeaderPanel = new JPanel();
-    HeaderPanel.setBackground(new Color(3,37,126));
+    HeaderPanel.setBackground(new Color(92, 64, 51));
     HeaderPanel.setPreferredSize(new Dimension(100,300));
     HeaderPanel.setLayout(null);
     
         // Creating home window Header Text
         JLabel logoPic = new JLabel();
-        ImageIcon logoImage = new ImageIcon(new ImageIcon("C:\\Users\\ZAHRA AHMED GARBA\\Documents\\GitHub\\DsBlockSoftware\\src\\img\\logo.png").getImage().getScaledInstance(150, 150, Image.SCALE_DEFAULT));
+        ImageIcon logoImage = new ImageIcon(new ImageIcon("C:\\Users\\The Only Supplier\\eclipse-workspace\\FoundAndLostSystem\\src\\img\\zoom_icon2.png").getImage().getScaledInstance(150, 150, Image.SCALE_DEFAULT));
 
       
-        logoPic.setBounds(80,4,400,200);
+        logoPic.setBounds(80,50,400,200);
          logoPic.setIcon(logoImage);
         // main logo 
         
         
         // Creating home window Header  text
         JLabel headerText = new JLabel();
-        headerText.setText("FOUNDO SYSTEM");
+        headerText.setText("FOUNDO");
         headerText.setForeground(Color.white);
-        headerText.setFont(new Font("algerian", Font.BOLD, 25));
-        headerText.setBounds(70,140,400,100);
+        headerText.setFont(new Font("algerian", Font.BOLD, 40));
+        headerText.setBounds(220,80,400,100);
         
         
      // Creating home window Header Paragraph text
@@ -98,23 +98,25 @@ public class HomeWindow implements ActionListener{
         headerParagraphText.setText("Let us help you find your lost items...");
         headerParagraphText.setForeground(Color.white);
         headerParagraphText.setFont(new Font("MV Boli", Font.ITALIC, 15));
-        headerParagraphText.setBounds(90,157,400,100);
+        headerParagraphText.setBounds(220,110,400,100);
         
         // creating home page picture
       //  Border border = BorderFactory.createLineBorder(new Color(115,215,255),8);
         JLabel sidePicture = new JLabel();
-        ImageIcon HeaderImage = new ImageIcon(new ImageIcon("C:\\Users\\ZAHRA AHMED GARBA\\Documents\\GitHub\\DsBlockSoftware\\src\\img\\headerCircledImage.png").getImage().getScaledInstance(180,180, Image.SCALE_DEFAULT));
+        ImageIcon HeaderImage = new ImageIcon(new ImageIcon("C:\\Users\\The Only Supplier\\eclipse-workspace\\FoundAndLostSystem\\src\\img\\animation.png").getImage().getScaledInstance(180,180, Image.SCALE_DEFAULT));
         
-        sidePicture.setBounds(800,15,250,250); 
+        sidePicture.setBounds(890,15,250,250); 
+       
         sidePicture.setIcon(HeaderImage);
       //  sidePicture.setBorder(border);
         
         
         // Creating get Started Button
-        getStartedBtn = new JButton("Look for your product!");
-        getStartedBtn.setForeground(new Color(3,37,126));
+        getStartedBtn = new JButton("Start looking!");
+        getStartedBtn.setForeground(new Color(92, 64, 51));
+        getStartedBtn.setBackground(new Color(253,226,149));
         getStartedBtn.setFont(new Font("MV Boli", Font.BOLD,15));
-        getStartedBtn.setBounds(150,230,130,30);
+        getStartedBtn.setBounds(220,180,180,30);
         getStartedBtn.setFocusable(false);
         getStartedBtn.addActionListener(this);
      
@@ -122,15 +124,15 @@ public class HomeWindow implements ActionListener{
      // Creating Body Panel
     JPanel BodyPanel = new JPanel();
     BodyPanel.setPreferredSize(new Dimension(200,250));
-    BodyPanel.setBackground(new Color(115,215,255));
+    BodyPanel.setBackground(new Color(253,226,149));
     BodyPanel.setLayout(null);
         
      // Creating home window Body Text
         JLabel BodyText = new JLabel();
-        BodyText.setText("Why Join Us");
-        BodyText.setForeground(new Color(3,37,126));
+        BodyText.setText("About Foundo");
+        BodyText.setForeground(new Color(92, 64, 51));
         BodyText.setFont(new Font("algerian", Font.BOLD, 30));
-        BodyText.setBounds(480,80,200,80);
+        BodyText.setBounds(480,80,300,80);
         
         // creating body animation image
          // creating home page picture
@@ -144,15 +146,15 @@ public class HomeWindow implements ActionListener{
         
         // Creating home window Header Paragraph text
         JLabel BodyParagraphText = new JLabel();
-        BodyParagraphText.setText("<html><body><div style='text-align:center;'>Dan Sani Block Industry is the number one Block company in katsina state.<br>"
-                + "We provide our Customers with Qualitative Blocks and also make it easier for them"
-                + " to order blocks even from inside their rooms, and we get the Blocks delivered as fast as possible"
-                + " to their desired location</div></body></html>");
+        BodyParagraphText.setText("<html><body><div style='text-align:center;'>Foundo helps you find your lost items easily and quickly.<br>"
+                + "People who finds your lost items can easily post it on our platform and we will help you get it in time."
+                + " With foundo there is no more lost and not found items "
+                + " </div></body></html>");
         BodyParagraphText.setVerticalAlignment(JLabel.CENTER);
         
-        BodyParagraphText.setForeground(new Color(3,37,126));
+        BodyParagraphText.setForeground(new Color(92, 64, 51));
         BodyParagraphText.setFont(new Font("times new roman", Font.ITALIC, 20));
-        BodyParagraphText.setBounds(180,160,800,100);
+        BodyParagraphText.setBounds(180,140,800,100);
         
   
  

@@ -48,7 +48,7 @@ public class SignInWindow implements ActionListener{
     public SignInWindow() throws SQLException{
            // Creating the SignUp window frame
     Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-    SignInFrame = new JFrame("DS Block Industry");
+    SignInFrame = new JFrame("Lost and Found");
     SignInFrame.setBounds(dim.width/3, dim.height/12,400, 500);
     SignInFrame.getContentPane().setBackground(new Color(115,215,255));
     SignInFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -59,7 +59,7 @@ public class SignInWindow implements ActionListener{
     
     // Creating SignUp Header
     JPanel HeaderPanel = new JPanel();
-    HeaderPanel.setBackground(new Color(3,37,126));
+    HeaderPanel.setBackground(new Color(92, 64, 51));
     HeaderPanel.setPreferredSize(new Dimension(100,120));
     HeaderPanel.setLayout(new BorderLayout());
     
@@ -78,7 +78,7 @@ public class SignInWindow implements ActionListener{
     // Creating Sign Up Form
     JPanel FormPanel = new JPanel();
     FormPanel.setPreferredSize(new Dimension(100,90));
-    FormPanel.setBackground(new Color(115,215,255));
+    FormPanel.setBackground(new Color(253,226,149));
     FormPanel.setLayout(null);
      
     // Creating Input Fields 
@@ -124,7 +124,7 @@ public class SignInWindow implements ActionListener{
     // Creating SignUp Buttons Panel
     JPanel btnPanel = new JPanel();
     btnPanel.setPreferredSize(new Dimension(100,50));
-    btnPanel.setBackground(new Color(3,37,126));
+    btnPanel.setBackground(new Color(92, 64, 51));
     btnPanel.setLayout(null);
      
     // Creating SignInBtn
