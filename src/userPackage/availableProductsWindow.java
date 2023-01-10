@@ -133,7 +133,7 @@ public class availableProductsWindow implements ActionListener {
     ItemNameLabel.setBounds(150,50,200,50);
     itemNameField = new JTextField();
     itemNameField.setPreferredSize(new Dimension(200,30));
-    itemNameField.setBounds(300,60,200,30);
+    itemNameField.setBounds(300,60,250,30);
     // Item Description
     // recievers phone number
     JLabel ItemDescriptionLabel = new JLabel("Item Description : ");
@@ -142,7 +142,7 @@ public class availableProductsWindow implements ActionListener {
     ItemDescriptionLabel.setBounds(150,100,200,50);
     itemDescriptionField = new JTextArea();
     itemDescriptionField.setPreferredSize(new Dimension(200,70));
-    itemDescriptionField.setBounds(300,110,200,80);
+    itemDescriptionField.setBounds(300,110,250,80);
     
        // recievers phone number
     JLabel foundersLabel = new JLabel("Founder's Contact : ");
@@ -151,7 +151,7 @@ public class availableProductsWindow implements ActionListener {
     foundersLabel.setBounds(150,200,200,50);
     receiversPhoneNumberField = new JTextField();
     receiversPhoneNumberField.setPreferredSize(new Dimension(200,30));
-    receiversPhoneNumberField.setBounds(300,210,200,30);
+    receiversPhoneNumberField.setBounds(300,210,250,30);
     
     // Delivery location 
     JLabel FoundLocationLabel = new JLabel("Was Found at : ");
@@ -160,7 +160,7 @@ public class availableProductsWindow implements ActionListener {
     FoundLocationLabel.setBounds(150,250,200,50);
     FoundLocationField = new JTextField();
     FoundLocationField.setPreferredSize(new Dimension(250,30));
-    FoundLocationField.setBounds(300,260,200,30);
+    FoundLocationField.setBounds(300,260,250,30);
     
     
     
@@ -215,7 +215,7 @@ public class availableProductsWindow implements ActionListener {
          
         
          // creating footer panel content
-         viewCartBtn = new JButton("<html><body><span style='color: rgb(92, 64, 51) '>View Items </span><span style='color: red;'> ("+init.countTableRows("carts_table", "")+")<span></body></html>");
+         viewCartBtn = new JButton("<html><body><span style='color: rgb(92, 64, 51) '>View Items </span><span style='color: red;'> ("+init.countTableRows("carts_table", "0")+")<span></body></html>");
          viewCartBtn.setFocusable(false);
          viewCartBtn.addActionListener(this);
          viewCartBtn.setBounds(85,30,170,40);

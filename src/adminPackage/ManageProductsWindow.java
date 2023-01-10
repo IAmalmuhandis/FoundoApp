@@ -31,6 +31,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.JTextArea;
 import javax.swing.table.TableModel;
 
 /**
@@ -43,36 +44,37 @@ public class ManageProductsWindow implements ActionListener {
     JButton customerBtn;
     JButton BackBtn;
     JButton UpdateItemBtn;
-    JTextField BlockTypeField;
-    JTextField BlockInchField;
-    JTextField AvailableAmountField;
-    JTextField UnitPriceField;
-    JTextField AvailableDateField;
-    String blockType = "";
-    String blockInch = "";
-    String unitPrice = "";
-    String availableAmount = "";
+   
+    String ItemName = "";
+    String ItemDescription = "";
+    String FoundLocation = "";
+    String FoundersPhoneNumber = "";
     Statement statement;
     
+    JTextField ItemNameField;
+    JTextArea ItemDescriptionField;
+    JTextField FounderLocationField;
+    JTextField FoundersPhoneNumberField;
+
     public ManageProductsWindow() throws SQLException{
         ManageProductsFrame = new JFrame("Manage Products");
       //  ManageProductsFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         ManageProductsFrame.setBounds(dim.width/7, dim.height/20,900, 600);
         ManageProductsFrame.setLayout(new BorderLayout());
-        ManageProductsFrame.getContentPane().setBackground(new Color(115,215,255));
+        ManageProductsFrame.getContentPane().setBackground(new Color(253,226,149));
         ManageProductsFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         ManageProductsFrame.setResizable(false);
         // Creating Header Panel
           // Manage products  Header
          JPanel HeaderPanel = new JPanel();
-         HeaderPanel.setBackground(new Color(3,37,126));
+         HeaderPanel.setBackground(new Color(92, 64, 51));
          HeaderPanel.setPreferredSize(new Dimension(100,90));
          HeaderPanel.setLayout(new FlowLayout());
          
           //   Creating total customers window Header Text
         JLabel headerText = new JLabel();
-        headerText.setText("Manage Products");
+        headerText.setText("Manage Found Items");
         headerText.setForeground(Color.white);
         headerText.setFont(new Font("algerian", Font.BOLD, 40));
         headerText.setVerticalAlignment(JLabel.CENTER);
@@ -83,7 +85,7 @@ public class ManageProductsWindow implements ActionListener {
         
         // Creating Body Panel
          JPanel tablePanel = new JPanel();
-         tablePanel.setBackground(new Color(115,215,255));
+         tablePanel.setBackground(new Color(253,226,149));
          tablePanel.setPreferredSize(new Dimension(100,90));
          tablePanel.setLayout(new BorderLayout());
          
@@ -97,20 +99,20 @@ public class ManageProductsWindow implements ActionListener {
      statement = connect.initConnection().createStatement();
     
     // execute the statement object
-   ResultSet resultSet = statement.executeQuery("select * from products_table");
+   ResultSet resultSet = statement.executeQuery("select * from carts_table WHERE `claimed` = '"+0+"'");
    // declaring counter to know total number of 
          
       
-         String columns[] = {"Block Type","Block Inch", "Unit Price", "Available Amount"};
+         String columns[] = {"Item Name","Item Description", "Found Location", "Founders Phone Number"};
          
                 databaseInitFunctions init = new databaseInitFunctions();
-           String data[][] = new String[init.countTableRows("products_table","")][columns.length];
+           String data[][] = new String[init.countTableRows("carts_table","+0+")][columns.length];
               int i = 0;
        while(resultSet.next() ){
-       data[i][0] = resultSet.getString("Block_Type");
-       data[i][1] = resultSet.getString("Block_Inch");
-       data[i][2] = resultSet.getString("Unit_Price");
-       data[i][3] = resultSet.getString("Available_Amount");
+       data[i][0] = resultSet.getString("item_name");
+       data[i][1] = resultSet.getString("item_description");
+       data[i][2] = resultSet.getString("found_location");
+       data[i][3] = resultSet.getString("Founder_phoneNumber");
        i++;
         }
            
@@ -124,62 +126,67 @@ public class ManageProductsWindow implements ActionListener {
          
         // creating edit products panel
          JPanel editProductsPanel = new JPanel();
-         editProductsPanel.setBackground(new Color(115,215,255));
+         editProductsPanel.setBackground(new Color(253,226,149));
          editProductsPanel.setPreferredSize(new Dimension(100,264));
          editProductsPanel.setLayout(new BorderLayout());
          
          // creating edit products panel sub panels
          JPanel upperPart = new JPanel();
          upperPart.setPreferredSize(new Dimension(0, 50));
-         upperPart.setBackground(new Color(115,215,255));
+         upperPart.setBackground(new Color(253,226,149));
          
          JPanel leftPart = new JPanel();
          leftPart.setPreferredSize(new Dimension(180,0));
-         leftPart.setBackground(new Color(115,215,255));
+         leftPart.setBackground(new Color(253,226,149));
          
          JPanel rightPart = new JPanel();
          rightPart.setPreferredSize(new Dimension(180,0));
-         rightPart.setBackground(new Color(115,215,255));
+         rightPart.setBackground(new Color(253,226,149));
          
          JPanel bottomPart = new JPanel();
          bottomPart.setPreferredSize(new Dimension(0,50));
-         bottomPart.setBackground(new Color(115,215,255));
+         bottomPart.setBackground(new Color(253,226,149));
          
          JPanel centerPart = new JPanel();
-         centerPart.setBackground(new Color(3,37,126));
+         centerPart.setBackground(new Color(92, 64, 51));
          centerPart.setLayout(null);
          
          // CREATING CONTENT FOR CENTER PART PANEL
-         JLabel BlockTypeFieldLabel = new JLabel();
-         BlockTypeFieldLabel.setText("Block Type:");
-         BlockTypeFieldLabel.setBounds(10,10,190,30);
-         BlockTypeFieldLabel.setForeground(Color.white);
-         BlockTypeField = new JTextField(blockType);
-         BlockTypeField.setBounds(90,10,150,30);
-         BlockTypeField.setEditable(false);
+         JLabel ItemNameLabel = new JLabel();
+         ItemNameLabel.setText("Item Name : ");
+         ItemNameLabel.setBounds(10,10,190,30);
+         ItemNameLabel.setForeground(Color.white);
+        ItemNameField = new JTextField(ItemName);
+        ItemNameField.setBounds(90,10,150,30);
+        ItemNameField.setEditable(false);
          
          
-         JLabel BlockInchFieldLabel = new JLabel();
-         BlockInchFieldLabel.setText("Block Inch:");
-         BlockInchFieldLabel.setBounds(290,10,200,30);
-         BlockInchFieldLabel.setForeground(Color.white);
-         BlockInchField = new JTextField(blockInch);
-         BlockInchField.setBounds(360,10,100,30);
-         BlockInchField.setEditable(false);
+         JLabel ItemDescriptionLabel = new JLabel();
+         ItemDescriptionLabel.setText("Block Inch:");
+         ItemDescriptionLabel.setBounds(290,10,200,30);
+         ItemDescriptionLabel.setForeground(Color.white);
+         ItemDescriptionField = new JTextArea(ItemDescription);
+         ItemDescriptionField.setBounds(360,10,150,70);
+         ItemDescriptionField.setEditable(false);
+         
+         JLabel FoundLocationLabel = new JLabel();
+         FoundLocationLabel.setText("Block Inch:");
+         FoundLocationLabel.setBounds(10,50,200,30);
+         FoundLocationLabel.setForeground(Color.white);
+         FounderLocationField = new JTextField(FoundLocation);
+         FounderLocationField.setBounds(90,50,150,30);
+         FounderLocationField.setEditable(false);
+         
+         JLabel FoundersPhoneNumberLabel = new JLabel();
+         FoundersPhoneNumberLabel.setText("Block Inch:");
+         FoundersPhoneNumberLabel.setBounds(290,90,200,30);
+         FoundersPhoneNumberLabel.setForeground(Color.white);
+        FoundersPhoneNumberField = new JTextField(FoundersPhoneNumber);
+        FoundersPhoneNumberField.setBounds(360,90,150,30);
+        FoundersPhoneNumberField.setEditable(false);
 
          
-         JLabel UnitPriceLabel = new JLabel();
-         UnitPriceLabel.setText("Unit Price:");
-         UnitPriceLabel.setBounds(10,60,190,30);
-         UnitPriceLabel.setForeground(Color.white);
-         UnitPriceField = new JTextField(unitPrice);
-         UnitPriceField.setBounds(90,60,150,30);
-         
-         JLabel AvailableAmountLabel = new JLabel("Amount:");
-         AvailableAmountLabel.setBounds(290,60,200,30);
-         AvailableAmountLabel.setForeground(Color.white);        
-         AvailableAmountField = new JTextField(availableAmount);
-         AvailableAmountField.setBounds(360,60,100,30);
+       
          
       
          
@@ -190,14 +197,14 @@ public class ManageProductsWindow implements ActionListener {
             int row = manageProductsTable.rowAtPoint(e.getPoint());
             //System.out.println(row);
           //  String value = manageProductsTable.getModel().getValueAt(row, 0).toString();
-           blockType = manageProductsTable.getModel().getValueAt(row, 0).toString();
-          BlockTypeField.setText(blockType);
-            blockInch = manageProductsTable.getModel().getValueAt(row, 1).toString();
-          BlockInchField.setText(blockInch);
-          unitPrice = manageProductsTable.getModel().getValueAt(row, 2).toString();
-          UnitPriceField.setText(unitPrice);
-          availableAmount = manageProductsTable.getModel().getValueAt(row, 3).toString();
-          AvailableAmountField.setText(availableAmount);
+           ItemName = manageProductsTable.getModel().getValueAt(row, 0).toString();
+         ItemNameField.setText(ItemName);
+            ItemDescription = manageProductsTable.getModel().getValueAt(row, 1).toString();
+          ItemDescriptionField.setText(ItemDescription);
+         FoundLocation = manageProductsTable.getModel().getValueAt(row, 2).toString();
+         FounderLocationField.setText(FoundLocation);
+         FoundersPhoneNumber = manageProductsTable.getModel().getValueAt(row, 3).toString();
+         FoundersPhoneNumberField.setText(FoundersPhoneNumber);
     
 
 //            TableModel.getDataVector().elementAt(JTable.getSelectedRow());
@@ -214,20 +221,20 @@ public class ManageProductsWindow implements ActionListener {
 //         AddItemBtn.setBounds(270,105,100,30);
          
          UpdateItemBtn = new JButton("Update Item");
-         UpdateItemBtn.setBounds(290,105,170,30);
+         UpdateItemBtn.setBounds(90,105,170,30);
          UpdateItemBtn.setFocusable(false);
          UpdateItemBtn.addActionListener(this);
          
          
          // Adding form content into Center Part 
-         centerPart.add(BlockTypeFieldLabel);
-         centerPart.add(BlockTypeField);
-         centerPart.add(BlockInchFieldLabel);
-         centerPart.add(BlockInchField);
-         centerPart.add(UnitPriceLabel);
-         centerPart.add(UnitPriceField);
-         centerPart.add(AvailableAmountLabel);
-         centerPart.add(AvailableAmountField);
+         centerPart.add(ItemNameLabel);
+         centerPart.add(ItemNameField);
+         centerPart.add(ItemDescriptionLabel);
+         centerPart.add(ItemDescriptionField);
+         centerPart.add(FoundLocationLabel);
+         centerPart.add(FounderLocationField);
+         centerPart.add(FoundersPhoneNumberLabel);
+         centerPart.add(FoundersPhoneNumberField);
      //    centerPart.add(AddItemBtn);
          centerPart.add(UpdateItemBtn);
                 
@@ -242,7 +249,7 @@ public class ManageProductsWindow implements ActionListener {
         
         // creating footer panel 
         JPanel footerPanel = new JPanel();
-         footerPanel.setBackground(new Color(3,37,126));
+         footerPanel.setBackground(new Color(92, 64, 51));
          footerPanel.setPreferredSize(new Dimension(100,90));
          footerPanel.setLayout(null);
          
@@ -272,11 +279,10 @@ public class ManageProductsWindow implements ActionListener {
     
     @Override 
     public void actionPerformed(ActionEvent e){
-        String updatedUnitPrice = UnitPriceField.getText();
-        String updatedAvailableAmount = AvailableAmountField.getText();
+      
         if(e.getSource() ==  UpdateItemBtn){
             try {
-           statement.executeUpdate("UPDATE products_table SET `Unit_Price` = '"+updatedUnitPrice+"',  `Available_Amount` = '"+updatedAvailableAmount+"'  WHERE(`Block_Type` = '"+blockType+"' AND `Block_Inch` = '"+blockInch+"') " );
+           statement.executeUpdate("UPDATE carts_table SET `claimed` = '"+1+"' WHERE(`item_name` = '"+ItemName+"' AND `item_description` = '"+ItemDescription+"') " );
            JOptionPane.showMessageDialog(null, "Update Successfully" , "Info" , JOptionPane.INFORMATION_MESSAGE);
 
             } catch (SQLException ex) {

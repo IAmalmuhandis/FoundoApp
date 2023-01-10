@@ -46,13 +46,13 @@ public class TotalCustomersWindow implements ActionListener {
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         CustomersFrame.setBounds(dim.width/7, dim.height/20,900, 600);
         CustomersFrame.setLayout(new BorderLayout());
-        CustomersFrame.getContentPane().setBackground(new Color(115,215,255));
+        CustomersFrame.getContentPane().setBackground(new Color(253,226,149));
         CustomersFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         
         // Creating Header Panel
           // total customers  Header
          JPanel HeaderPanel = new JPanel();
-         HeaderPanel.setBackground(new Color(3,37,126));
+         HeaderPanel.setBackground(new Color(92, 64, 51));
          HeaderPanel.setPreferredSize(new Dimension(100,90));
          HeaderPanel.setLayout(new FlowLayout());
          
@@ -69,7 +69,7 @@ public class TotalCustomersWindow implements ActionListener {
         
         // Creating Body Panel
          JPanel tablePanel = new JPanel();
-         tablePanel.setBackground(new Color(115,215,255));
+         tablePanel.setBackground(new Color(253,226,149));
          tablePanel.setPreferredSize(new Dimension(100,90));
          tablePanel.setLayout(new BorderLayout());
          
@@ -113,21 +113,20 @@ public class TotalCustomersWindow implements ActionListener {
         
         // creating footer panel 
         JPanel footerPanel = new JPanel();
-         footerPanel.setBackground(new Color(3,37,126));
+         footerPanel.setBackground(new Color(92, 64, 51));
          footerPanel.setPreferredSize(new Dimension(100,90));
          footerPanel.setLayout(null);
          
          // creating footer panel content
-         PrintBtn = new JButton("Print List");
-         PrintBtn.setFocusable(false);
-         PrintBtn.addActionListener(this);
-         PrintBtn.setBounds(10,30,100,40);
+    
          BackBtn = new JButton("Back");
          BackBtn.addActionListener(this);
-         BackBtn.setBounds(200,30,100,40);
+         BackBtn.setBounds(10,30,100,40);
          BackBtn.setFocusable(false);
+         BackBtn.setBackground(new Color(253,226,149));
+         BackBtn.setForeground(new Color(92, 64, 51));
          // Adding elements to footer panel
-         footerPanel.add(PrintBtn);
+      
          footerPanel.add(BackBtn);
          
         
@@ -135,7 +134,7 @@ public class TotalCustomersWindow implements ActionListener {
          CustomersFrame.add(HeaderPanel, BorderLayout.NORTH);
          CustomersFrame.add(tablePanel, BorderLayout.CENTER);
          CustomersFrame.add(footerPanel, BorderLayout.SOUTH);
-        CustomersFrame.setVisible(true);
+         CustomersFrame.setVisible(true);
         
       
     }

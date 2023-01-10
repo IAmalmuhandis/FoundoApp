@@ -30,7 +30,7 @@ public class AdminDashboardWindow implements ActionListener {
     JFrame AdminFrame;
     JButton viewTotalCustomersBtn;
    // JButton viewTotalOrdersBtn;
-    JButton manageProductsBtn;
+    JButton manageFoundItemsBtn;
     JButton logoutBtn;
     databaseInitFunctions init = new databaseInitFunctions();
    public AdminDashboardWindow() throws SQLException{
@@ -106,15 +106,15 @@ public class AdminDashboardWindow implements ActionListener {
     manageProductsHeaderText.setHorizontalAlignment(JLabel.CENTER);
     
     // creating manage produts button
-    manageProductsBtn = new JButton("Manage Products");
-    manageProductsBtn.setFocusable(false);
-    manageProductsBtn.setForeground(new Color(92, 64, 51));
-     manageProductsBtn.setPreferredSize(new Dimension(0,50));
-    manageProductsBtn.addActionListener(this);
+    manageFoundItemsBtn = new JButton("Manage Found Items");
+    manageFoundItemsBtn.setFocusable(false);
+    manageFoundItemsBtn.setForeground(new Color(92, 64, 51));
+     manageFoundItemsBtn.setPreferredSize(new Dimension(0,50));
+    manageFoundItemsBtn.addActionListener(this);
     
       // adding elements to manage products panel 
         manageProducts.add(manageProductsHeaderText, BorderLayout.CENTER);
-        manageProducts.add(manageProductsBtn, BorderLayout.SOUTH);
+        manageProducts.add(manageFoundItemsBtn, BorderLayout.SOUTH);
    
     // Creating LogOut Button
     logoutBtn = new JButton("Logout");
@@ -149,7 +149,7 @@ public class AdminDashboardWindow implements ActionListener {
             } catch (SQLException ex) {
                 Logger.getLogger(AdminDashboardWindow.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }else if(e.getSource() == manageProductsBtn ){
+        }else if(e.getSource() == manageFoundItemsBtn ){
            AdminFrame.dispose();
             try {
                 new ManageProductsWindow();

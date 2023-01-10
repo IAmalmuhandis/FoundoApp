@@ -6,6 +6,7 @@ package userPackage;
 
 import databasePackage.databaseInitFunctions;
 import databasePackage.databaseInitFunctions.startConnection;
+import mainPackage.SignInWindow;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -38,22 +39,17 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
+
+import adminPackage.ManageProductsWindow;
+
 import java.sql.Statement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
-
-
-/**
- *
- * @author Zarah
- */
-
 public class CustomerCartWindow implements ActionListener {
     JFrame CartsFrame;
     JButton DashboardBtn;
     JButton BackBtn;
-   
     JButton ClaimBtn;
     String ItemName = "";
     String ItemDescription = "";
@@ -96,30 +92,20 @@ public class CustomerCartWindow implements ActionListener {
          JPanel tablePanel = new JPanel();
          tablePanel.setBackground(new Color(253,226,149));
          tablePanel.setPreferredSize(new Dimension(100,90));
-         tablePanel.setLayout(new BorderLayout());
-         
-         
+         tablePanel.setLayout(new BorderLayout());      
 //                // *********************************************************************************** //
 //    ///////// CONNECTING DATABASE AND SENDING SEQUEL COMMANDS TO THE DATABASE
 //    // challenge faced 2 dimensional
-          startConnection connect = new startConnection();
-    
+          startConnection connect = new startConnection();   
     // create a sql statement obj to send to the data base
         statement = connect.initConnection().createStatement();
-//    
-//        startConnection connect = new startConnection();
-//    // execute the statement object
-//        Statement statement = (Statement) connect.initConnection();
-        
-        String selectingAllCarts = "SELECT * FROM carts_table";
-        ResultSet resultSet = statement.executeQuery(selectingAllCarts);
-        
+        String selectingAllCarts = "SELECT * FROM carts_table WHERE claimed = '"+0+"'";
+        ResultSet resultSet = statement.executeQuery(selectingAllCarts);     
     //    ResultSet rowCount = statement.executeQuery("SELECT COUNT(*) FROM carts_table");
-  
          // creating my table data 
         databaseInitFunctions init = new databaseInitFunctions();
         String columns[] = {"Item Name", "Item Description", "Found Location", "Founders Phone Number"};
-        String data[][] = new String[init.countTableRows("carts_table", "")][columns.length];
+        String data[][] = new String[init.countTableRows("carts_table", "0")][columns.length];
         int i = 0;  
        while(resultSet.next() ){
        data[i][0] = resultSet.getString("item_name");
@@ -131,26 +117,22 @@ public class CustomerCartWindow implements ActionListener {
          // creating list of all customers table
          JTable CustomersTable = new JTable(data,columns);
          // set custom renderer to order column
-       
          // scrollpane, set Size , set Close operation
          JScrollPane scroller = new JScrollPane(CustomersTable); 
          
          // creating table remove and add row form 
          JPanel addOrRemovePanel = new JPanel();
          addOrRemovePanel.setPreferredSize(new Dimension(0,200));
-         addOrRemovePanel.setBackground(new Color(253,226,149));
-         
+         addOrRemovePanel.setBackground(new Color(253,226,149));      
          // creating form
          JPanel formPanel = new JPanel();
          formPanel.setPreferredSize(new Dimension(440,190));
          formPanel.setBackground(new Color(92, 64, 51));
-         formPanel.setLayout(new BorderLayout());
-         
+         formPanel.setLayout(new BorderLayout());       
          // creating upper and lower form part panel
          JPanel upperFormPanel = new JPanel();
          upperFormPanel.setBackground(new Color(92, 64, 51));
-         upperFormPanel.setLayout(new FlowLayout());
-         
+         upperFormPanel.setLayout(new FlowLayout());           
          // creating content for upper panel 
          JLabel cartDetailsLabel = new JLabel();
          cartDetailsLabel.setText(
@@ -159,35 +141,24 @@ public class CustomerCartWindow implements ActionListener {
                          + "Item Description : "+ItemDescription+" Inch<br>"
                          + "Found Location : "+FoundLocation+"<br>"
                          + "Founder Phone Number : "+FoundersPhoneNumber+" "+ "</body></html>");
-
+         cartDetailsLabel.setLayout(new FlowLayout());
           CustomersTable.addMouseListener(new MouseAdapter(){
-         public void mousePressed(MouseEvent e){
-          //  System.out.println(col);
-            int row = CustomersTable.rowAtPoint(e.getPoint());
-            //System.out.println(row);
+         public void mousePressed(MouseEvent e){      
+            int row = CustomersTable.rowAtPoint(e.getPoint());    
           //  String value = manageProductsTable.getModel().getValueAt(row, 0).toString();
            ItemName = CustomersTable.getModel().getValueAt(row, 0).toString();
            ItemDescription =  CustomersTable.getModel().getValueAt(row, 1).toString();
            FoundLocation = CustomersTable.getModel().getValueAt(row, 2).toString();
            FoundersPhoneNumber = CustomersTable.getModel().getValueAt(row, 3).toString();
-//          AvailableDateField.setText(availableDate);
-
-
-//            TableModel.getDataVector().elementAt(JTable.getSelectedRow());
-            
-         
            cartDetailsLabel.setText(
                  "<html><body>"
                          + "Item Name : "+ ItemName+"<br>"
                          + "Item Description : "+ItemDescription+" Inch<br>"
                      
                          + "Found Location : "+FoundLocation+"<br>"
-                         + "Founders Phone Number : "+FoundersPhoneNumber+" "+ "</body></html>");    
-           
+                         + "Founders Phone Number : "+FoundersPhoneNumber+" "+ "</body></html>");            
          }
-         });
-         
-         
+         });   
                   cartDetailsLabel.setVerticalTextPosition(JLabel.CENTER);
          cartDetailsLabel.setHorizontalTextPosition(JLabel.LEFT);
          cartDetailsLabel.setFont(new Font("aerial", Font.BOLD, 14));
@@ -255,8 +226,6 @@ public class CustomerCartWindow implements ActionListener {
     
     @Override 
     public void actionPerformed(ActionEvent e){
-       
-      
         if(e.getSource() == DashboardBtn){
            try {
                CartsFrame.dispose();
@@ -274,10 +243,20 @@ public class CustomerCartWindow implements ActionListener {
             }
             }else if(e.getSource() == ClaimBtn){      
         
-            JOptionPane.showMessageDialog(null, "Please call this number : " + FoundersPhoneNumber + " to recieve your item" , "Founder Contact", JOptionPane.INFORMATION_MESSAGE, null); 
+            JOptionPane.showMessageDialog(null, "Please make sure to call this number : " + FoundersPhoneNumber + " to recieve your item" , "Founder Contact", JOptionPane.INFORMATION_MESSAGE, null); 
+            int response =  JOptionPane.showConfirmDialog(null, "Are you sure you have claimed your item?", "Info.", JOptionPane.YES_NO_OPTION);
+            if(response == 0 ){
+              
+              try {
+			      statement.executeUpdate("UPDATE carts_table SET `claimed` = '"+1+"' WHERE(`item_name` = '"+ItemName+"' AND `item_description` = '"+ItemDescription+"') " );
+			      JOptionPane.showMessageDialog(null, "Update Successfully" , "Info" , JOptionPane.INFORMATION_MESSAGE);
+                   CartsFrame.dispose();
+                   new CustomerCartWindow(loggedInUsername);
+			       } catch (SQLException ex) {
+			           Logger.getLogger(ManageProductsWindow.class.getName()).log(Level.SEVERE, null, ex);
+			       }
+            }       
             }
-          
-
     }
 }
 

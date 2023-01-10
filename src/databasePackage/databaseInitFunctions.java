@@ -109,7 +109,7 @@ public class databaseInitFunctions {
     
  
   
-    public int countTableRows(String tableName, String loggedInUser) throws SQLException{
+    public int countTableRows(String tableName, String claimedStatus) throws SQLException{
         
         startConnection connect = new startConnection();
     
@@ -118,8 +118,8 @@ public class databaseInitFunctions {
       int rowCount = 0;
       ResultSet resultSet;
       String tableRowsQuery = "SELECT COUNT(1) FROM " + tableName;
-      if(!loggedInUser.isEmpty()){
-             tableRowsQuery = "SELECT COUNT(1) FROM " + tableName+ " WHERE Customer_ID = '"+loggedInUser+"'";
+      if(!claimedStatus.isEmpty()){
+             tableRowsQuery = "SELECT COUNT(1) FROM " + tableName+ " WHERE claimed = '"+claimedStatus+"'";
       }
           ResultSet rowsCount = statement.executeQuery(tableRowsQuery);
                     if(rowsCount.next()){
@@ -165,12 +165,7 @@ public class databaseInitFunctions {
        data[4] = resultSet.getString("profile_picture");
        i++;
         }
-//       String current_firstName =    data[0];
-//       String current_lastName =     data[1];
-//       String current_emailAddress = data[2];
-//       String current_phoneNumber =  data[3];
-//       String profile_picture =      data[4];
-    
+ 
         return data;
     
     }
